@@ -1,11 +1,23 @@
 import './App.css'
+import {NavBar} from "./components/NavBar";
+import {Route, Routes} from "react-router-dom";
+import {Products} from "./pages/Products.jsx";
+import {Shopping} from "./pages/Shopping.jsx";
+import {Categories} from "./pages/Categories.jsx";
+import {Contact} from "./pages/Contact.jsx";
+
 
 export function App() {
-    return (
-        <h1 className="text-3xl font-bold text-gray-700">
-            Hello world!
-        </h1>
-    )
+    return <>
+        <NavBar/>
+
+        <Routes>
+            <Route path="/products" element={<Products/>}/>
+            <Route path="/categories" element={<Categories/>}/>
+            <Route path="/shopping" element={<Shopping/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+        </Routes>
+    </>
 }
 
 export default App
