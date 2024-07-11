@@ -6,6 +6,9 @@ export function NavBar() {
             <span className="basis-1/4 mx-1 text-4xl">Madadis</span>
             <ul className="basis-2/4 flex flex-row gap-6 justify-end mx-1 p-2">
                 <li>
+                    <Link to="/home">Home</Link>
+                </li>
+                <li>
                     <Link to="/products">Produits</Link>
                 </li>
                 <li>
