@@ -6,7 +6,7 @@ export function Home() {
     return (
         <>
             <img className="d-flex mx-auto my-6" src="src/assets/react.png" alt="React logo" />
-            <GetProducts numberOfProduct={6}>
+            <GetProducts numberOfProduct={6} select={'title,thumbnail'}>
                 {(products) => (
                     <div className="flex flex-wrap justify-center">
                         {products.map(product => (
