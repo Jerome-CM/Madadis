@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {getValueOfParamInUrl} from "../script/GetValueOfParamInUrl.jsx";
+import {getValueOfParamInUrl} from "../../script/GetValueOfParamInUrl.jsx";
 
 export function GetProductsWithId({children}) {
 
