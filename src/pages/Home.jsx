@@ -1,6 +1,6 @@
 // src/pages/Home.jsx
 import CardProduct from "../components/CardProduct.jsx";
-import {GetProducts} from "../components/GetProduct.jsx";
+import {GetProducts} from "../components/get/GetProduct.jsx";
 
 export function Home() {
     return (

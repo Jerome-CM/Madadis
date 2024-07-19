@@ -1,4 +1,4 @@
-import {GetGategories} from "../components/GetCategories";
+import {GetGategories} from "../components/get/GetCategories.jsx";
 import {CategoryCard} from "../components/CategoryCard.jsx";
 
 export function Categories() {
