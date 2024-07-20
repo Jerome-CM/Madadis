@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-
+import getValueOfParamInUrl from "../../script/GetValueOfParamInUrl";
 export function GetGategoryContent({children}) {
 
-    const [categories, setCategories] = useState([]);
-
+    const [products, setProducts] = useState([]);
+    const category = getValueOfParamInUrl('category');
+    console.log("categoryGet : " + category);
     useEffect(() => {
-        fetch('https://dummyjson.com/products/category-list')
+        fetch('https://dummyjson.com/products/category/'+category)
             .then((res) => res.json())
             .then((data) => {
-                setCategories(data);
+                setProducts(data.products);
             });
     }, []);
 /* Boucle */
-    return children(categories);
+    return children(products);
 }
