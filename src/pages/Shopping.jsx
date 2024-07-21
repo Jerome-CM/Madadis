@@ -1,8 +1,10 @@
 // pages/Home.js
 
 
+import {MainTitle} from "../components/MainTitle.jsx";
+
 export function Shopping() {
     return <>
-        <h1>Shopping Page</h1>
+        <MainTitle title={'Cart'}/>
     </>
 }

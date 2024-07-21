@@ -1,7 +1,9 @@
 // pages/Contact.js
 
+import {MainTitle} from "../components/MainTitle.jsx";
+
 export function Contact() {
     return <>
-        <h1>Contact Page</h1>
+        <MainTitle title={'Contact'}/>
     </>
 }
