@@ -20,6 +20,9 @@ export function NavBar() {
                 <li className="rounded hover:bg-cyan-600 px-4 py-2">
                     <Link to="/contact">Contact</Link>
                 </li>
+                <li className="rounded hover:bg-cyan-600 px-4 py-2">
+                    <Link to="/auth">Account</Link>
+                </li>
             </ul>
         </nav>
 }

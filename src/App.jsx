@@ -8,6 +8,7 @@ import {Contact} from "./pages/Contact.jsx";
 import {Home} from "./pages/Home.jsx";
 import {DetailsProduct} from "./pages/DetailsProduct.jsx";
 import {CategoryContent} from "./pages/CategoryContent.jsx";
+import {Auth} from "./pages/Auth.jsx";
 
 
 export function App() {
@@ -21,6 +22,7 @@ export function App() {
                 <Route path="/categoryContent" element={<CategoryContent/>}/>
             <Route path="/shopping" element={<Shopping/>}/>
             <Route path="/contact" element={<Contact/>}/>
+            <Route path="/auth" element={<Auth/>}/>
         </Routes>
     </>
 }
