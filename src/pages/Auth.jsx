@@ -38,7 +38,6 @@ function handleSubmit(e) {
         .then(data=>{
             if(data.token !== ''){
                 localStorage.setItem('token', data.token);
-                location.href = '/products';
             }
         });
     }
