@@ -1,4 +1,60 @@
+import {useEffect, useState} from "react";
+import {useNavigate} from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 const CardProductDetails = ({ product }) => {
+    const [tokenIsExist, setTokenIsExist] = useState(false);
+    const [cart, setCart] = useState([]);
+    const [messageButton, setMessageButton] = useState('Login me');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setTokenIsExist(true);
+            setMessageButton('Add to cart');
+        }
+    }, []);
+
+    useEffect(() => {
+        // Récupérer le cookie et le convertir en tableau d'objets
+        const cookieValue = Cookies.get('cart');
+        if (cookieValue) {
+            setCart(JSON.parse(cookieValue));
+            console.log("Cookie : " + cookieValue);
+        }
+    }, []);
+
+    const handleClick = () => {
+        // Redirect if no auth
+        if (!tokenIsExist) {
+            navigate('/auth');
+        } else {
+            // drop the cart cookie
+            const cookieValue = Cookies.get('cart');
+            if (cookieValue) {
+                setCart(JSON.parse(cookieValue));
+                let idIsUnique = true;
+                // Check this product is already exist
+                cart.map(productInCookie => {
+                    if(productInCookie.productId === product.id){
+                        idIsUnique = false;
+                    }
+                });
+                // Add in cookie, if the product is unique
+                if(idIsUnique){
+                    cart.push({productId: product.id, quantity: 1});
+                    Cookies.set('cart', JSON.stringify(cart), {expires: 15});
+                }
+            }
+           else {
+               // Init first product in cookie
+                cart.push({productId: product.id, quantity: 1});
+                Cookies.set('cart', JSON.stringify(cart), {expires: 15});
+            }
+        }
+    }
+
     return (
 
         <div className="w-10/12 rounded overflow-hidden shadow-lg p-4 m-5 bg-white flex-col text-black justify-center">
@@ -27,7 +83,13 @@ const CardProductDetails = ({ product }) => {
                         <span className="">Stock : {product.stock}</span>
                         <span className="">Price : {product.price}$</span>
                     </div>
-                    <span className="bg-slate-600 text-center py-2 px-4 text-white rounded drop-shadow-md w-64 mx-auto">Add to cart</span>
+                    <button
+                        id='button'
+                        className="bg-slate-600 text-center py-2 px-4 text-white rounded drop-shadow-md w-64 mx-auto"
+                        onClick={handleClick}
+                    >
+                        {messageButton}
+                    </button>
                 </div>
             </div>
             {/*Div for Rating*/}
