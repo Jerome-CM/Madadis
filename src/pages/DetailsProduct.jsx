@@ -1,4 +1,4 @@
-import {GetProductsWithId} from "../components/get/GetProductWithId.jsx";
+import {GetProductsWithId} from "../components/get/GetProductWithIdWithUrl.jsx";
 import CardProductDetails from "../components/CardProductDetails.jsx";
 
 export function DetailsProduct() {
