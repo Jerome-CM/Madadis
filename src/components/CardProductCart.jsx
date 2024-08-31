@@ -1,4 +1,5 @@
 import {deleteProductInCookie} from "../script/DeleteProductInCookie.jsx";
+import {useNavigate} from "react-router-dom";
 
 const CardProductCart = ({ product, onQuantityChange }) => {
 
@@ -11,6 +12,7 @@ const CardProductCart = ({ product, onQuantityChange }) => {
         const newQuantity = product.quantity - 1;
         if(newQuantity < 1){
             deleteProductInCookie('cart', product.id);
+            window.location.reload()
         } else {
             onQuantityChange(product.id, newQuantity);
         }
