@@ -49,6 +49,7 @@ export function Shopping() {
                                     ))}
                                 </div>
                                 <div className="w-3/12 flex flex-col text-black rounded overflow-hidden shadow-lg p-4 m-2 bg-white text-center h-64 justify-between">
+                                    <h2 className="text-2xl antialiased underline">Cart resume</h2>
                                     <span>{productCount} products</span>
                                     <span>{totalPrice}$</span>
                                     <a href="/checkout" className="form-input px-4 py-3 m-2 rounded border-none text-white text-center drop-shadow-md bg-cyan-950 hover:bg-cyan-600 transition">
