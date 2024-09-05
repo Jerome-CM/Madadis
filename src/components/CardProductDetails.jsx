@@ -1,7 +1,11 @@
-import {useEffect, useState} from "react";
-import {useNavigate} from 'react-router-dom';
+// Les importations doivent toujours être au sommet du fichier, avant tout autre code
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+// Le composant CardProductDetails commence ici
 const CardProductDetails = ({ product }) => {
     const [tokenIsExist, setTokenIsExist] = useState(false);
     const [cart, setCart] = useState([]);
@@ -17,7 +21,6 @@ const CardProductDetails = ({ product }) => {
     }, []);
 
     useEffect(() => {
-        // Récupérer le cookie et le convertir en tableau d'objets
         const cookieValue = Cookies.get('cart');
         if (cookieValue) {
             setCart(JSON.parse(cookieValue));
@@ -26,50 +29,43 @@ const CardProductDetails = ({ product }) => {
     }, []);
 
     const handleClick = () => {
-        // Redirect if no auth
         if (!tokenIsExist) {
             navigate('/auth');
         } else {
-            // drop the cart cookie
-            const cookieValue = Cookies.get('cart');
-            if (cookieValue) {
-                setCart(JSON.parse(cookieValue));
-                let idIsUnique = true;
-                // Check this product is already exist
-                cart.map(productInCookie => {
-                    if(productInCookie.productId === product.id){
-                        idIsUnique = false;
-                    }
-                });
-                // Add in cookie, if the product is unique
-                if(idIsUnique){
-                    cart.push({productId: product.id, quantity: 1});
-                    Cookies.set('cart', JSON.stringify(cart), {expires: 15});
+            let updatedCart = [...cart];
+            let idIsUnique = true;
+
+            updatedCart.forEach(productInCookie => {
+                if (productInCookie.productId === product.id) {
+                    idIsUnique = false;
                 }
-            }
-           else {
-               // Init first product in cookie
-                cart.push({productId: product.id, quantity: 1});
-                Cookies.set('cart', JSON.stringify(cart), {expires: 15});
+            });
+
+            if (idIsUnique) {
+                updatedCart.push({ productId: product.id, quantity: 1 });
+                setCart(updatedCart);
+                Cookies.set('cart', JSON.stringify(updatedCart), { expires: 15 });
+
+                // Afficher la notification de succès
+                toast.success(` ${product.title} have been add in cart.`);
+            } else {
+                toast.warning(` ${product.title} is already in cart.`);
             }
         }
     }
 
     return (
-
         <div className="w-10/12 rounded overflow-hidden shadow-lg p-4 m-5 bg-white flex-col text-black justify-center">
             <h1 className="text-2xl my-4 text-center">{product.title}</h1>
             <div className="flex justify-items-center">
-                {/*div for img*/}
                 <div className="basis-1/2">
                     <img className="mx-auto" src={product.thumbnail} alt="Picture of product"/>
                 </div>
-                {/*Div for infos*/}
                 <div className="basis-1/2 flex flex-col justify-between">
                     <span className="">{product.description}</span>
                     <span className="">Category : {product.category}</span>
                     <div>
-                        <ul  className="flex gap-3">
+                        <ul className="flex gap-3">
                             {product.tags && Array.isArray(product.tags) && product.tags.length > 0 ? (
                                 product.tags.map((tag, index) => (
                                     <li className="bg-slate-600 py-1 px-3 text-white rounded drop-shadow-md" key={index}>#{tag}</li>
@@ -92,11 +88,11 @@ const CardProductDetails = ({ product }) => {
                     </button>
                 </div>
             </div>
-            {/*Div for Rating*/}
-            <div className=""></div>
-
+            {/* Le composant ToastContainer doit être ici */}
+            <ToastContainer autoClose={3000}/>
         </div>
     );
 };
 
+// Exportation du composant
 export default CardProductDetails;
