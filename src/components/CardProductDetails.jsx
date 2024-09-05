@@ -1,24 +1,12 @@
 // Les importations doivent toujours être au sommet du fichier, avant tout autre code
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Le composant CardProductDetails commence ici
 const CardProductDetails = ({ product }) => {
-    const [tokenIsExist, setTokenIsExist] = useState(false);
     const [cart, setCart] = useState([]);
-    const [messageButton, setMessageButton] = useState('Login me');
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            setTokenIsExist(true);
-            setMessageButton('Add to cart');
-        }
-    }, []);
 
     useEffect(() => {
         const cookieValue = Cookies.get('cart');
@@ -29,9 +17,6 @@ const CardProductDetails = ({ product }) => {
     }, []);
 
     const handleClick = () => {
-        if (!tokenIsExist) {
-            navigate('/auth');
-        } else {
             let updatedCart = [...cart];
             let idIsUnique = true;
 
@@ -45,13 +30,10 @@ const CardProductDetails = ({ product }) => {
                 updatedCart.push({ productId: product.id, quantity: 1 });
                 setCart(updatedCart);
                 Cookies.set('cart', JSON.stringify(updatedCart), { expires: 15 });
-
-                // Afficher la notification de succès
                 toast.success(` ${product.title} have been add in cart.`);
             } else {
                 toast.warning(` ${product.title} is already in cart.`);
             }
-        }
     }
 
     return (
@@ -84,7 +66,7 @@ const CardProductDetails = ({ product }) => {
                         className="bg-slate-600 text-center py-2 px-4 text-white rounded drop-shadow-md w-64 mx-auto"
                         onClick={handleClick}
                     >
-                        {messageButton}
+                        Add to cart
                     </button>
                 </div>
             </div>
