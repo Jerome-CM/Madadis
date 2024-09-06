@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 
-export function GetProducts({ numberOfProduct, select ,children }) {
+export function GetProductsForPagination({ limit, select, skip, children }) {
 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch(`https://dummyjson.com/products?limit=${numberOfProduct}&select=${select}&groupBy=title&order=desc`)
+        fetch(`https://dummyjson.com/products?skip=${skip}&limit=${limit}&select=${select}`)
+
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data.products);
             });
-    }, [numberOfProduct]);
+    }, [skip]);
 
     return children(products);
 }
