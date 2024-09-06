@@ -1,11 +1,17 @@
 // Les importations doivent toujours être au sommet du fichier, avant tout autre code
 import { useEffect, useState } from "react";
+import { format } from "date-fns";
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Le composant CardProductDetails commence ici
 const CardProductDetails = ({ product }) => {
+
+if (!product || !Array.isArray(product.reviews)) {
+        return <p className="text-gray-500">Chargement du produit...</p>;
+    }
+
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
@@ -37,6 +43,7 @@ const CardProductDetails = ({ product }) => {
     }
 
     return (
+        <>
         <div className="w-10/12 rounded overflow-hidden shadow-lg p-4 m-5 bg-white flex-col text-black justify-center">
             <h1 className="text-2xl my-4 text-center">{product.title}</h1>
             <div className="flex justify-items-center">
@@ -73,6 +80,28 @@ const CardProductDetails = ({ product }) => {
             {/* Le composant ToastContainer doit être ici */}
             <ToastContainer autoClose={3000}/>
         </div>
+        <div className="w-10/12 rounded overflow-hidden shadow-lg p-4 m-5 bg-white flex-col text-black justify-center">
+                            <h2 className="text-2xl my-4 text-center">Reviews</h2>
+                            {product.reviews.length === 0 ? (
+                                <p className="text-gray-500">Aucun avis pour ce produit.</p>
+                            ) : (
+                                <ul className="space-y-4 w-auto flex justify-around	">
+                                    {product.reviews.map((review, index) => (
+                                        <li key={index} className="p-4 border border-gray-200 rounded-md shadow-sm">
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="text-lg font-bold">{review.reviewerName}</span>
+                                                <span className="text-yellow-500">{'★'.repeat(review.rating)}</span>
+                                            </div>
+                                            <p className="text-gray-700 mb-2">{review.comment}</p>
+                                            <div className="text-sm text-gray-500">
+                                                Posté le {format(new Date(review.date), 'dd MMMM yyyy')}
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+        </>
     );
 };
 
