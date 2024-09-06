@@ -3,6 +3,7 @@ import {NavBar} from "./components/NavBar";
 import {Route, Routes} from "react-router-dom";
 import {Products} from "./pages/Products.jsx";
 import {Shopping} from "./pages/Shopping.jsx";
+import {Checkout} from "./pages/Checkout.jsx";
 import {Categories} from "./pages/Categories.jsx";
 import {Contact} from "./pages/Contact.jsx";
 import {Home} from "./pages/Home.jsx";
@@ -21,6 +22,7 @@ export function App() {
             <Route path="/categories" element={<Categories/>}/>
                 <Route path="/categoryContent" element={<CategoryContent/>}/>
             <Route path="/shopping" element={<Shopping/>}/>
+                <Route path="/checkout" element={<Checkout/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/auth" element={<Auth/>}/>
         </Routes>
