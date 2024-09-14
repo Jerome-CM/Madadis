@@ -1,13 +1,14 @@
-// src/pages/Home.jsx
 import CardProduct from "../components/CardProduct.jsx";
 import {GetProducts} from "../components/get/GetProduct.jsx";
+import {HomeBanner} from "../components/HomeBanner.jsx";
 import {MainTitle} from "../components/MainTitle.jsx";
 
 export function Home() {
     return (
         <>
             <MainTitle title={'Welcome'}/>
-            <img className="d-flex mx-auto my-6 w-3/12" src="src/assets/react.png" alt="React logo" />
+            <HomeBanner/>
+            <div className="text-black text-center text-3xl my-9">New collection</div>
             <GetProducts numberOfProduct={6} select={'title,thumbnail'}>
                 {(products) => (
                     <div className="flex flex-wrap justify-center">
