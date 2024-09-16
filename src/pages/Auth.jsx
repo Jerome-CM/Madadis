@@ -48,7 +48,7 @@ export function Auth() {
         <>
             <MainTitle title={'Connexion'} />
             <form
-                className="w-5/12 rounded overflow-hidden shadow-lg p-4 my-5 mx-auto bg-white text-black flex flex-col items-center"
+                className="w-10/12 lg:w-5/12 rounded overflow-hidden shadow-lg p-4 my-5 mx-auto bg-white text-black flex flex-col items-center"
                 onSubmit={handleSubmit}
                 method="post"
             >

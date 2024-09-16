@@ -42,16 +42,16 @@ export function Shopping() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="flex w-12/12">
-                                <div className="w-9/12 flex flex-col">
+                            <div className="flex flex-col lg:flex-row w-11/12 mx-auto">
+                                <div className="w-full lg:w-9/12 flex flex-col">
                                     {products.map((product) => (
                                         <CardProductCart key={product.id} product={product} onQuantityChange={handleQuantityChange} />
                                     ))}
                                 </div>
-                                <div className="w-3/12 flex flex-col text-black rounded overflow-hidden shadow-lg p-4 m-2 bg-white text-center h-64 justify-between">
-                                    <h2 className="text-2xl antialiased underline">Cart resume</h2>
-                                    <span>{productCount} products</span>
-                                    <span>{totalPrice}$</span>
+                                <div className="w-full flex flex-row lg:w-3/12 lg:flex-col text-black rounded overflow-hidden shadow-lg p-4 my-2 mx-auto bg-white text-center lg:h-64 justify-between">
+                                    <h2 className="hidden sm:block sm:text-2xl md:align-items antialiased underline my-auto">Cart resume</h2>
+                                    <span className="my-auto">{productCount} products</span>
+                                    <span className="my-auto">{totalPrice}$</span>
                                     <a href="/checkout" className="form-input px-4 py-3 m-2 rounded border-none text-white text-center drop-shadow-md bg-cyan-950 hover:bg-cyan-600 transition">
                                         Checkout
                                     </a>

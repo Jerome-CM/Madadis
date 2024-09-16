@@ -29,14 +29,14 @@ export const ContactUs = () => {
   };
 
   return (
-      <form className="w-9/12 rounded overflow-hidden shadow-lg p-4 my-5 mx-auto bg-white text-black flex flex-col items-center"  ref={form} onSubmit={sendEmail}>
+      <form className="w-11/12 md:w-9/12 rounded overflow-hidden shadow-lg p-4 my-5 mx-auto bg-white text-black flex flex-col items-center"  ref={form} onSubmit={sendEmail}>
           <img className="w-60" src="/src/assets/e-mail.gif" alt="Lock"/>
-          <div className="flex flex-row">
-              <div className="w-6/12">
+          <div className="flex flex-col md:flex-row md:justify-between w-full">
+              <div className="w-full flex flex-col md:w-6/12 md:mr-2">
                   <Input type={'text'} name={'from_name'} placeholder={'Your name'}/>
                   <Input type={'text'} name={'to_name'} placeholder={'E-mail'}/>
               </div>
-              <textarea placeholder="Your message" name="message" className="w-6/12 form-input px-4 py-3 w-96 m-2 rounded border-none drop-shadow-md"></textarea>
+              <textarea placeholder="Your message" name="message" className="w-auto md:w-6/12 form-input px-4 py-3 h-48 my-4 md:m-0 mb:ml-2 md:mb-4  rounded border-none drop-shadow-md"></textarea>
           </div>
           <Submit type={'submit'} value={'Envoyer'}/>
       </form>
