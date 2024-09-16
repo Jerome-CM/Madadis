@@ -20,15 +20,15 @@ export function App() {
             </Helmet>
             <NavBar />
             <Routes>
-                <Route path="/home" element={<Home />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/detailsProduct" element={<DetailsProduct />} />
-                <Route path="/categories" element={<Categories />} />
-                <Route path="/categoryContent" element={<CategoryContent />} />
-                <Route path="/shopping" element={<Shopping />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/auth" element={<Auth />} />
+                <Route path="home" element={<Home />} />
+                <Route path="products" element={<Products />} />
+                <Route path="detailsProduct" element={<DetailsProduct />} />
+                <Route path="categories" element={<Categories />} />
+                <Route path="categoryContent" element={<CategoryContent />} />
+                <Route path="shopping" element={<Shopping />} />
+                <Route path="checkout" element={<Checkout />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="auth" element={<Auth />} />
             </Routes>
         </HelmetProvider>
     );
