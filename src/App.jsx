@@ -22,7 +22,7 @@ export function App() {
             <Routes>
                 <Route path="home" element={<Home />} />
                 <Route path="products" element={<Products />} />
-                <Route path="detailsProduct/:id" element={<DetailsProduct />} />
+                <Route path="detailsproduct/:id" element={<DetailsProduct />} />
                 <Route path="categories" element={<Categories />} />
                 <Route path="categoryContent" element={<CategoryContent />} />
                 <Route path="shopping" element={<Shopping />} />
